@@ -1,0 +1,5 @@
+= machineset-egress-cidr-operator
+
+machineset-egress-cidr-operator is a Commodore component to manage machineset-egress-cidr-operator.
+
+See the xref:references/parameters.adoc[parameters] reference for further details.

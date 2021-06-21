@@ -1,0 +1,4 @@
+parameters:
+  machineset_egress_cidr_operator:
+    =_metadata: {}
+    namespace: syn-machineset-egress-cidr-operator
