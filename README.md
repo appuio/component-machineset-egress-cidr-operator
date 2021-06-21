@@ -1,6 +1,6 @@
 # Commodore Component: machineset-egress-cidr-operator
 
-This is a [Commodore][commodore] Component for machineset-egress-cidr-operator.
+This is a [Commodore][commodore] Component for [openshift-machineset-egress-cidr-operator](https://github.com/appuio/openshift-machineset-egress-cidr-operator).
 
 This repository is part of Project Syn.
 For documentation on Project Syn and this component, see https://syn.tools.
