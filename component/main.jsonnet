@@ -23,13 +23,13 @@ local clusterRoleBinding = kube.ClusterRoleBinding('machineset-egress-cidr-opera
   roleRef_: clusterRole,
 };
 
+local leaderElectionRole = kube.Role('leader-election-role') {
+  rules: params.leader_election_role_rules,
+};
+
 local roleBindnig = kube.RoleBinding('machineset-egress-cidr-operators') {
   subjects_: [ serviceAccount ],
-  roleRef: {
-    apiGroup: 'rbac.authorization.k8s.io',
-    kind: 'Role',
-    name: 'leader-election-role',
-  },
+  roleRef_: leaderElectionRole,
 };
 
 local deployment = kube.Deployment('machineset-egress-cidr-operators') {
@@ -56,7 +56,13 @@ local labels = {
 };
 
 // Define outputs below
-local rbac = [ serviceAccount, clusterRole, clusterRoleBinding, roleBindnig ];
+local rbac = [
+  serviceAccount,
+  clusterRole,
+  clusterRoleBinding,
+  leaderElectionRole,
+  roleBindnig,
+];
 {
   '00_namespace': namespace + labels,
   '10_rbac': [ r + labels for r in rbac ],
