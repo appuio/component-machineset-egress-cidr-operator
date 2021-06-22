@@ -19,12 +19,12 @@ local clusterRole = kube.ClusterRole('machineset-egress-cidr-operator') {
 };
 
 local clusterRoleBinding = kube.ClusterRoleBinding('machineset-egress-cidr-operators') {
-  subjects_: [serviceAccount],
+  subjects_: [ serviceAccount ],
   roleRef_: clusterRole,
 };
 
 local roleBindnig = kube.RoleBinding('machineset-egress-cidr-operators') {
-  subjects_: [serviceAccount],
+  subjects_: [ serviceAccount ],
   roleRef: {
     kind: 'Role',
     name: 'leader-election-role',
@@ -55,9 +55,9 @@ local labels = {
 };
 
 // Define outputs below
-local rbac = [serviceAccount, clusterRole, clusterRoleBinding, roleBindnig];
+local rbac = [ serviceAccount, clusterRole, clusterRoleBinding, roleBindnig ];
 {
   '00_namespace': namespace + labels,
-  '10_rbac': [r + labels for r in rbac],
+  '10_rbac': [ r + labels for r in rbac ],
   '20_deployment': deployment + labels,
 }
