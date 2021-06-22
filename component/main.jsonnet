@@ -26,6 +26,7 @@ local clusterRoleBinding = kube.ClusterRoleBinding('machineset-egress-cidr-opera
 local roleBindnig = kube.RoleBinding('machineset-egress-cidr-operators') {
   subjects_: [ serviceAccount ],
   roleRef: {
+    apiGroup: 'rbac.authorization.k8s.io',
     kind: 'Role',
     name: 'leader-election-role',
   },
@@ -33,9 +34,9 @@ local roleBindnig = kube.RoleBinding('machineset-egress-cidr-operators') {
 
 local deployment = kube.Deployment('machineset-egress-cidr-operators') {
   spec+: {
+    replicas: 1,
     template+: {
       spec+: {
-        replicas: 1,
         serviceAccount: serviceAccount.metadata.name,
         containers_+: {
           operator: kube.Container('operator') {
