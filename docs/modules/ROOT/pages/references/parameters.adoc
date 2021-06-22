@@ -17,3 +17,35 @@ The namespace in which to deploy this component.
 ----
 namespace: example-namespace
 ----
+
+== `images`
+
+[horizontal]
+type:: object
+default::
+[source,yaml]
+----
+operator:
+  image: quay.io/appuio/openshift-machineset-egress-cidr-operator
+  tag: v1.0.0
+----
+
+Container images and tags to use
+
+== `resources`
+
+[horizontal]
+type:: object
+default::
+[source,yaml]
+----
+resources:
+  requests:
+    cpu: 20m
+    memory: 50Mi
+  limits:
+    cpu: 300m
+    memory: 100Mi
+----
+
+Resource requests and limits for the operator

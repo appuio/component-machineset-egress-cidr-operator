@@ -1,4 +1,44 @@
 parameters:
   machineset_egress_cidr_operator:
     =_metadata: {}
+
     namespace: syn-machineset-egress-cidr-operator
+
+    images:
+      operator:
+        image: quay.io/appuio/openshift-machineset-egress-cidr-operator
+        tag: v1.0.0
+
+    resources:
+      requests:
+        cpu: 20m
+        memory: 50Mi
+      limits:
+        cpu: 300m
+        memory: 100Mi
+
+    labels:
+      app.kubernetes.io/name: machineset-egress-cidr-operator
+      app.kubernetes.io/instance: openshift-machineset-egress-cidr-operator
+      app.kubernetes.io/component: operator
+      app.kubernetes.io/managed-by: commodore
+
+    cluster_role_rules:
+      - apiGroups:
+          - machine.openshift.io
+        resources:
+          - machinesets
+          - machines
+        verbs:
+          - get
+          - list
+          - watch
+      - apiGroups:
+          - network.openshift.io
+        resources:
+          - hostsubnets
+        verbs:
+          - get
+          - list
+          - watch
+          - update
