@@ -32,7 +32,7 @@ local roleBindnig = kube.RoleBinding('machineset-egress-cidr-operators') {
   roleRef_: leaderElectionRole,
 };
 
-local deployment = kube.Deployment('machineset-egress-cidr-operators') {
+local deployment = kube.Deployment('operator') {
   spec+: {
     replicas: 1,
     template+: {
