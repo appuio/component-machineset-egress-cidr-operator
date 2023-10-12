@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/component: operator
+    app.kubernetes.io/instance: openshift-machineset-egress-cidr-operator
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: machineset-egress-cidr-operator
+    name: operator
+  name: operator
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: operator
+      app.kubernetes.io/instance: openshift-machineset-egress-cidr-operator
+      app.kubernetes.io/managed-by: commodore
+      app.kubernetes.io/name: machineset-egress-cidr-operator
+      name: operator
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations: {}
+      labels:
+        app.kubernetes.io/component: operator
+        app.kubernetes.io/instance: openshift-machineset-egress-cidr-operator
+        app.kubernetes.io/managed-by: commodore
+        app.kubernetes.io/name: machineset-egress-cidr-operator
+        name: operator
+    spec:
+      containers:
+        - args: []
+          env: []
+          image: quay.io/appuio/openshift-machineset-egress-cidr-operator:v1.0.0
+          imagePullPolicy: IfNotPresent
+          name: operator
+          ports: []
+          resources:
+            limits:
+              cpu: 300m
+              memory: 100Mi
+            requests:
+              cpu: 20m
+              memory: 50Mi
+          stdin: false
+          tty: false
+          volumeMounts: []
+      imagePullSecrets: []
+      initContainers: []
+      serviceAccount: machineset-egress-cidr-operator
+      terminationGracePeriodSeconds: 30
+      volumes: []
