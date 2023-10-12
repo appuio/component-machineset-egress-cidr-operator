@@ -1,0 +1,25 @@
+{
+  "template": "https://github.com/projectsyn/commodore-component-template.git",
+  "commit": "1cd627b94a8162858e42772a3a2e142abf73c3ab",
+  "checkout": "main",
+  "context": {
+    "cookiecutter": {
+      "name": "machineset-egress-cidr-operator",
+      "slug": "machineset-egress-cidr-operator",
+      "parameter_key": "machineset_egress_cidr_operator",
+      "test_cases": "defaults",
+      "add_lib": "n",
+      "add_pp": "n",
+      "add_golden": "y",
+      "add_matrix": "y",
+      "add_go_unit": "n",
+      "copyright_holder": "VSHN AG <info@vshn.ch>",
+      "copyright_year": "2021",
+      "github_owner": "appuio",
+      "github_name": "component-machineset-egress-cidr-operator",
+      "github_url": "https://github.com/appuio/component-machineset-egress-cidr-operator",
+      "_template": "https://github.com/projectsyn/commodore-component-template.git"
+    }
+  },
+  "directory": null
+}

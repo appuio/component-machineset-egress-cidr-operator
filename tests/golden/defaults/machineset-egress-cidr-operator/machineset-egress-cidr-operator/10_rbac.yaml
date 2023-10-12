@@ -1,0 +1,117 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/component: operator
+    app.kubernetes.io/instance: openshift-machineset-egress-cidr-operator
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: machineset-egress-cidr-operator
+    name: machineset-egress-cidr-operator
+  name: machineset-egress-cidr-operator
+  namespace: syn-machineset-egress-cidr-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/component: operator
+    app.kubernetes.io/instance: openshift-machineset-egress-cidr-operator
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: machineset-egress-cidr-operator
+    name: machineset-egress-cidr-operator
+  name: machineset-egress-cidr-operator
+rules:
+  - apiGroups:
+      - machine.openshift.io
+    resources:
+      - machinesets
+      - machines
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - network.openshift.io
+    resources:
+      - hostsubnets
+    verbs:
+      - get
+      - list
+      - watch
+      - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/component: operator
+    app.kubernetes.io/instance: openshift-machineset-egress-cidr-operator
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: machineset-egress-cidr-operator
+    name: machineset-egress-cidr-operators
+  name: machineset-egress-cidr-operators
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: machineset-egress-cidr-operator
+subjects:
+  - kind: ServiceAccount
+    name: machineset-egress-cidr-operator
+    namespace: syn-machineset-egress-cidr-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/component: operator
+    app.kubernetes.io/instance: openshift-machineset-egress-cidr-operator
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: machineset-egress-cidr-operator
+    name: leader-election-role
+  name: leader-election-role
+rules:
+  - apiGroups:
+      - ''
+      - coordination.k8s.io
+    resources:
+      - configmaps
+      - leases
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+  - apiGroups:
+      - ''
+    resources:
+      - events
+    verbs:
+      - create
+      - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/component: operator
+    app.kubernetes.io/instance: openshift-machineset-egress-cidr-operator
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: machineset-egress-cidr-operator
+    name: machineset-egress-cidr-operators
+  name: machineset-egress-cidr-operators
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: leader-election-role
+subjects:
+  - kind: ServiceAccount
+    name: machineset-egress-cidr-operator
+    namespace: syn-machineset-egress-cidr-operator
