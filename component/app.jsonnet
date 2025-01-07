@@ -5,6 +5,10 @@ local argocd = import 'lib/argocd.libjsonnet';
 
 local app = argocd.App('machineset-egress-cidr-operator', params.namespace);
 
+local appPath =
+  local project = std.get(app, 'spec', { project: 'syn' }).project;
+  if project == 'syn' then 'apps' else 'apps-%s' % project;
+
 {
-  'machineset-egress-cidr-operator': app,
+  ['%s/machineset-egress-cidr-operator' % appPath]: app,
 }

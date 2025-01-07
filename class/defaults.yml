@@ -1,6 +1,7 @@
 parameters:
   machineset_egress_cidr_operator:
-    =_metadata: {}
+    =_metadata:
+      multi_tenant: true
 
     namespace: syn-machineset-egress-cidr-operator
 
