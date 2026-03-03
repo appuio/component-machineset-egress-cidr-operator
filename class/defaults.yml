@@ -2,6 +2,9 @@ parameters:
   machineset_egress_cidr_operator:
     =_metadata:
       multi_tenant: true
+      deprecated: true
+      deprecation_notice: >-
+        This operator manages HostSubnet of openshift-sdn, which is deprecated.
 
     namespace: syn-machineset-egress-cidr-operator
 
