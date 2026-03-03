@@ -1,3 +1,8 @@
+# :warning: Repo Archive Notice
+
+As of March 3, 2026, this component is deprecated and will no longer be updated.
+This operator manages HostSubnet of openshift-sdn, which is deprecated.
+
 # Commodore Component: machineset-egress-cidr-operator
 
 This is a [Commodore][commodore] Component for machineset-egress-cidr-operator.
